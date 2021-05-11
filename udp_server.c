@@ -41,6 +41,7 @@
 #include "cyhal.h"
 #include "cybsp.h"
 #include "cy_retarget_io.h"
+#include <inttypes.h>
 
 /* FreeRTOS header file */
 #include <FreeRTOS.h>
@@ -153,7 +154,7 @@ void udp_server_task(void *arg)
     result = create_udp_server_socket();
     if (result != CY_RSLT_SUCCESS)
     {
-        printf("UDP Server Socket creation failed. Error: %ld\n", result);
+        printf("UDP Server Socket creation failed. Error: %"PRIu32"\n", result);
         CY_ASSERT(0);
     }
 
@@ -181,7 +182,7 @@ void udp_server_task(void *arg)
             }
             else
             {
-                printf("Failed to send command to client. Error: %ld\n", result);
+                printf("Failed to send command to client. Error: %"PRIu32"\n", result);
             }
         }
       }
@@ -357,7 +358,7 @@ cy_rslt_t udp_server_recv_handler(cy_socket_t socket_handle, void *arg)
     }
     else
     {
-        printf("Failed to receive message from client. Error: %ld\n", result);
+        printf("Failed to receive message from client. Error: %"PRIu32"\n", result);
         return result;
     }
 
