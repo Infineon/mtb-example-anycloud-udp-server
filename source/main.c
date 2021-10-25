@@ -65,8 +65,6 @@
 /*******************************************************************************
 * Global Variables
 ********************************************************************************/
-/* This enables RTOS aware debugging. */
-volatile int uxTopUsedPriority;
 
 /* UDP server task handle. */
 TaskHandle_t server_task_handle;
@@ -89,9 +87,6 @@ int main(void)
 {
     cy_rslt_t result;
 
-    /* This enables RTOS aware debugging in OpenOCD. */
-    uxTopUsedPriority = configMAX_PRIORITIES - 1;
-
     /* Initialize the device and board peripherals */
     result = cybsp_init() ;
     if (result != CY_RSLT_SUCCESS)
@@ -108,7 +103,7 @@ int main(void)
     /* \x1b[2J\x1b[;H - ANSI ESC sequence to clear screen. */
     printf("\x1b[2J\x1b[;H");
     printf("===============================================================\n");
-    printf("CE230436 - AnyCloud Example: UDP Server\n");
+    printf("CE230436 - UDP Server\n");
     printf("===============================================================\n\n");
 
     /* Create the tasks. */

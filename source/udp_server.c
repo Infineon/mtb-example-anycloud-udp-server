@@ -88,6 +88,7 @@ static cy_rslt_t connect_to_wifi_ap(void);
 static cy_rslt_t create_udp_server_socket(void);
 static cy_rslt_t udp_server_recv_handler(cy_socket_t socket_handle, void *arg);
 static void isr_button_press( void *callback_arg, cyhal_gpio_event_t event);
+void print_heap_usage(char *msg);
 
 /*******************************************************************************
 * Global Variables
@@ -184,6 +185,8 @@ void udp_server_task(void *arg)
             {
                 printf("Failed to send command to client. Error: %"PRIu32"\n", result);
             }
+            
+            print_heap_usage("After sending LED ON/OFF command to client");
         }
       }
  }
@@ -361,6 +364,8 @@ cy_rslt_t udp_server_recv_handler(cy_socket_t socket_handle, void *arg)
         printf("Failed to receive message from client. Error: %"PRIu32"\n", result);
         return result;
     }
+    
+    print_heap_usage("After receiving ACK from client");
 
     printf("===============================================================\n");
     printf("Press the user button to send LED ON/OFF command to the UDP client\n");
