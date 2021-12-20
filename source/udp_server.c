@@ -107,6 +107,12 @@ bool led_state = CYBSP_LED_STATE_OFF;
 /* UDP Server task handle. */
 extern TaskHandle_t server_task_handle;
 
+cyhal_gpio_callback_data_t cb_data =
+{
+.callback = isr_button_press,
+.callback_arg = NULL
+};
+
 /*******************************************************************************
  * Function Name: udp_server_task
  *******************************************************************************
@@ -132,7 +138,7 @@ void udp_server_task(void *arg)
 
     /* Initialize the user button (CYBSP_USER_BTN) and register interrupt on falling edge. */
     cyhal_gpio_init(CYBSP_USER_BTN, CYHAL_GPIO_DIR_INPUT, CYHAL_GPIO_DRIVE_PULLUP, CYBSP_BTN_OFF);
-    cyhal_gpio_register_callback(CYBSP_USER_BTN, isr_button_press, NULL);
+    cyhal_gpio_register_callback(CYBSP_USER_BTN, &cb_data);
     cyhal_gpio_enable_event(CYBSP_USER_BTN, CYHAL_GPIO_IRQ_FALL, USER_BTN_INTR_PRIORITY, true);
 
     /* Connect to Wi-Fi AP */
