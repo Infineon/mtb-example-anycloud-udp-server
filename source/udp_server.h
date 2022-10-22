@@ -5,7 +5,7 @@
 *              UDP server operation.
 *
 ********************************************************************************
-* Copyright 2020-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2020-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -48,6 +48,7 @@
  * Note: Maximum length of the Wi-Fi SSID and password is set to
  * CY_WCM_MAX_SSID_LEN and CY_WCM_MAX_PASSPHRASE_LEN as defined in cy_wcm.h file.
  */
+
 #define WIFI_SSID                                 "WIFI_SSID"
 #define WIFI_PASSWORD                             "WIFI_PASSWORD"
 
